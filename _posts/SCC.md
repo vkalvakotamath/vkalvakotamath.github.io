@@ -1,3 +1,9 @@
+ ---
+title: "Holographic quantum gravity and SCC"
+description: "Some recent work"
+categories: [gr-qc, hep-th]
+tags: [Holography, Strong cosmic censorship]
+---
  To general relativists, one nice kink is that SCC always seems to provide an endless number of issues. In particular, a recent paper showed that in semiclassical gravity, the stress-tensor forces quantum backreactions to the curvature terms, which one can use to show inner Cauchy horizon instability. This takes the form,
 
 \[\langle T_{VV} \rangle \sim \frac{C}{V^{2}}, \]
