@@ -10,4 +10,4 @@ About 300 years ago, the influential mathematician Leonhard Euler solved the pro
 
 $$\displaystyle{ z! = \int_0^1 \left( - \ln u \right)^z du }$$
 
-> Logic is the foundation of the certainty of all the knowledge we acquire.
+> Logic is the foundation of the certainty o all the knowledge we acquire.
