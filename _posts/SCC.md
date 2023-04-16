@@ -1,10 +1,9 @@
- ---
-title: "Deriving the Gamma Function from Scratch"
-description: "Finding the famous integral representation of the gamma function using some analysis"
-categories: [analysis]
-tags: [gamma function, Laplace transforms]
 ---
-
+title: Holography and SCC
+date: YYYY-MM-DD HH:MM:SS +/-TTTT
+categories: [gr-qc, Holography]
+tags: [gr-qc, hep-th]     # TAG names should always be lowercase
+---
 ## What is the gamma function about?
 
 About 300 years ago, the influential mathematician Leonhard Euler solved the problem of extending the factorial function to non-integers. He originally found an [infinite product representation](https://en.wikipedia.org/wiki/Gamma_function#18th_century:_Euler_and_Stirling), which he soon expressed in the integral form,
