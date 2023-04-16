@@ -1,6 +1,6 @@
 ---
 title: Holography and SCC
-date: 2023-04-15D 22:12:33 +/-TTTT
+date: 2023-04-15 22:12:33 +/-TTTT
 categories: [gr-qc, Holography]
 tags: [gr-qc, hep-th]     # TAG names should always be lowercase
 ---
