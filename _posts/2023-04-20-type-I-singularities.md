@@ -17,6 +17,6 @@ $$\sup_{M}|\mathrm{Riem}^{g}|_{g(t)}<\frac{K}{T-t},$$
 
 <p>At $t=T$, if the flow cannot be smoothly extended, $M$ is said to develop a type-I singularity. From Hamilton's work in 1982, one has</p>
   
- $$\lim_{t\nearrow T}\sup |\mathrm{Riem}^{g}||=\infty.$$
+ $$\lim_{t\nearrow T}\sup |\mathrm{Riem}^{g}|=\infty.$$
   
-  <p><b>Draft -- will be updated within two hours or I will have to buy three munchkin cats.</b></p>
+  <p><b>Draft -- will be updated by tomorrow morning or I will have to call Harry Styles and tell him I love him (not complaining).</b></p>
