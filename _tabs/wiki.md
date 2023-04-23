@@ -3,7 +3,6 @@
 icon: fas fa-info-circle
 order: 4
 ---
-# Wiki!
 
 The following is the directory map for reference in case any of the links change -- note that individual files may take some time to be updated, although the directory URL would remain the same.
 
