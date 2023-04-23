@@ -1,16 +1,6 @@
-# Generated using Chirpy Starter [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)](https://rubygems.org/gems/jekyll-theme-chirpy) [![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+# Wiki! (Generated using Chirpy Starter) [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)](https://rubygems.org/gems/jekyll-theme-chirpy) [![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
 
 The following is the directory map for reference in case any of the links change -- note that individual files may take some time to be updated, although the directory URL would remain the same.
-
-```shell
-.
-├── Categories
-├── Tags
-├── Archive
-├── Math.DG notes
-└── Poincare
-    └── Poincare conjecture and the h-cobordism theorem
-```
 
 <h1>Main</h1>
 <p>Categories: https://vkalvakotamath.github.io/categories/</p>
@@ -23,6 +13,21 @@ The following is the directory map for reference in case any of the links change
 <h2>.../mathDG/</h2>
 <h3>.../mathDG/Poincare: https://vkalvakotamath.github.io/mathDG/Poincare/</h3>
 <p>.../mathDG/Poincare/Introduction_to_the_Poincare_conjecture_Part_I.pdf</p>
+
+***
+```shell
+Main
+├── /Categories*
+├── /Tags*
+├── /Archive*
+├── /Wiki*
+├──/mathDG
+└── /mathDG/Poincare
+    └── /mathDG/Poincare/Introduction to the Poincare conjecture: Part-I
+    └── /mathDG/Poincare/Poincare conjecture and the h-cobordism theorem
+├── /mathAT
+├── /mathSG
+```
 
 ## License
 
