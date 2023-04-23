@@ -12,25 +12,17 @@ The following is the directory map for reference in case any of the links change
     └── Poincare conjecture and the h-cobordism theorem
 ```
 
-To save you time, and also in case you lose some files while copying, we extract those files/configurations of the latest version of the **Chirpy** theme and the [CD][CD] workflow to here, so that you can start writing in minutes.
+<h1>Main</h1>
+<p>Categories: https://vkalvakotamath.github.io/categories/</p>
+<p>Tags: https://vkalvakotamath.github.io/tags/](https://vkalvakotamath.github.io/tags/)</p>
+<p>Archives: https://vkalvakotamath.github.io/archives/</p>
+<p>About: https://vkalvakotamath.github.io/about/</p>
+<p>Wiki: https://vkalvakotamath.github.io/wiki/</p>
 
-## Prerequisites
-
-Follow the instructions in the [Jekyll Docs](https://jekyllrb.com/docs/installation/) to complete the installation of the basic environment. [Git](https://git-scm.com/) also needs to be installed.
-
-## Installation
-
-Sign in to GitHub and [**use this template**][use-template] to generate a brand new repository and name it `USERNAME.github.io`, where `USERNAME` represents your GitHub username.
-
-Then clone it to your local machine and run:
-
-```
-$ bundle
-```
-
-## Usage
-
-Please see the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy#documentation).
+***
+<h2>.../mathDG/</h2>
+<h3>.../mathDG/Poincare: https://vkalvakotamath.github.io/mathDG/Poincare/</h3>
+<p>.../mathDG/Poincare/Introduction_to_the_Poincare_conjecture_Part_I.pdf</p>
 
 ## License
 
