@@ -20,4 +20,9 @@ $$m_{H}(S)=\sqrt{\frac{|S|}{16\pi}}\left(\frac{\chi(S)}{2}-\frac{1}{16\pi}\int_{
 
 $$\frac{d}{dt}m_{H}(S)=\sqrt{\frac{|S|}{16\pi}}\left(\frac{1}{2}+\frac{1}{16\pi}\int_{S}\frac{2|\nabla_{S}\mathbf{H}|^{2}}{\mathbf{H}^{2}}+\frac{\mathbf{\lambda}^{2}}{2}+R-2K \right),$$
 
-<p>where $\mathbf{\lambda}$ is the difference of the principal curvatures $\lambda_{1}-\lambda_{2}$. Because we consider $R\geq 0$, and $\int_{S}K\leq 4$, which holds for all surfaces that are connected from the Gauss-Bonnet theorem. This means that the variation of the Hawking mass is necessarily non-negative. Now this is a particularly nice result, since the definition of the ADM mass follows directly from the asymptotic nature of the Hawking mass 
+<p>where $\mathbf{\lambda}$ is the difference of the principal curvatures $\lambda_{1}-\lambda_{2}$. Because we consider $R\geq 0$, and $\int_{S}K\leq 4$, which holds for all surfaces that are connected from the Gauss-Bonnet theorem. This means that the variation of the Hawking mass is necessarily non-negative. Now this is a particularly nice result, since the definition of the ADM mass follows directly from the asymptotic nature of the Hawking mass, and so in the case of asymptotically round foliations of surfaces going to spatial infinity under IMCF, $m_{ADM}\geq \sqrt{|S|/16\pi}$. In fact in the case of the null Penrose inequality, the Hawking mass plays a key role in understanding the Bondi energy, but I will write a <i>chirp</i> about this soon.</p>
+<p>Huisken and Ilmanens approach towards IMCF is a very neat idea; you start by stating that the minimal enclosure surface under IMCF, goes to some $i^{0}$ slice such that the ADM mass is given by </p>
+
+$$m_{ADM}(S)\geq \sqrt{\frac{|S|}{16\[pi}},$$
+
+<p>so that the nature of the hypersurface foliation becomes asymptotical geodesic foliation 
