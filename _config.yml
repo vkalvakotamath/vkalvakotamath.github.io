@@ -12,8 +12,8 @@ title_separator          : "-"
 name                     : &name "Vaibhav Kalvakota"
 description              : &description "personal description"
 url                      : https://vkalvakotamath.github.io"
-baseurl                  : """
-repository               : "academicpages/academicpages.github.io"
+baseurl                  : ""
+repository               : ""
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
