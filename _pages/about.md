@@ -13,7 +13,7 @@ Kindly note that due to some issue with this theme, mobile displays do not show 
 
 <h3>Pages in this website:</h3>
 
-Blog: <a href="https://vkalvakotamath.github.io/year-archive/">blog /year-archive</a>
+Blog: <a href="https://vkalvakotamath.blogspot.com/">blog</a>
 
 Publications: <a href="https://vkalvakotamath.github.io/publications/">/publications</a>
 
