@@ -7,16 +7,16 @@ redirect_from:
   - /about/
   - /about.html
 ---
-Hi! My area of work is best described by their corresponding arXiv classifications: **gr-qc**, **math.DG** and **hep-th**. Current status: trying to understand entanglement entropy in dS/CFT and other holographic proposals for de Sitter. Essentially, trying to understand de Sitter like we do AdS/CFT, but this is not without problems, and not just ordinary problems -- non-unitary ones. 
+Hi! My area of work is best described by their corresponding arXiv classifications: **hep-th**, **gr-qc**, **math.DG**, and just recently getting into **math.OA**. Current status: trying to understand bulk reconstruction in dS/CFT and other aspects of operator dictionaries for de Sitter. Essentially, trying to understand de Sitter like we do AdS/CFT, but this is not without problems, and not just ordinary problems -- non-unitary ones. Due to this, we have to understand _timelike_ subregions. One of my motivations was that dS/CFT works the opposite of AdS/CFT -- just tilt your head by 90 degrees to understand the double Wick rotations from AdS to dS, and you will realise that instead of one extrapolate dictionary (like AdS/CFT), there is a differentiate dictionary introduced by Maldacena and an extrapolate dictionary, introduced by Strominger. And so on...
 
-Kindly note that due to some issue with this theme, mobile displays do not show the navigation bar at the top right. Therefore, I have added the links given in this page.
+This is an archival website, so kindly check my blog to actually see some of my writings and stuffs in one place. Files are hosted from this website, such as my writings or lecture notes.
 
-<h3>Pages in this website:</h3>
+<h3>My pages</h3>
 
 Blog: <a href="https://vkalvakotamath.blogspot.com/">blog</a>
 
-Publications: <a href="https://vkalvakotamath.github.io/publications/">/publications</a>
+Lecture notes and teaching: <a href="https://vkalvakotamath.blogspot.com/notes/">Notes</a>
 
-Lecture notes and teaching: <a href="https://vkalvakotamath.github.io/teaching/">/teaching</a>
+Web resources: <a href="https://vkalvakotamath.blogspot.com/web/">web</a>
 
 Talks: <a href="https://vkalvakotamath.github.io/talks/">/talks</a>
