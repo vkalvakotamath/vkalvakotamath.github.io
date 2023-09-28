@@ -13,10 +13,10 @@ This is an archival website, so kindly check my blog to actually see some of my 
 
 <h3>My pages</h3>
 
-Blog: <a href="https://vkalvakotamath.blogspot.com/">blog</a>
+Blog: <a href="https://vkalvakotamath.blogspot.com/">vkalvakotamath.blogspot.com</a>
 
-Lecture notes and teaching: <a href="https://vkalvakotamath.blogspot.com/notes/">Notes</a>
+Lecture notes and teaching: <a href="https://vkalvakotamath.blogspot.com/notes/">vkalvakotamath.blogspot.com/notes</a>
 
-Web resources: <a href="https://vkalvakotamath.blogspot.com/web/">web</a>
+Web resources: <a href="https://vkalvakotamath.blogspot.com/web/">vkalvakotamath.blogspot.com/web</a>
 
 Talks: <a href="https://vkalvakotamath.github.io/talks/">/talks</a>
