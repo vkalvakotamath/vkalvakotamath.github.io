@@ -2,9 +2,7 @@
 main:
   - title: "Talks"
     url: /talks/    
-
   - title: "Teaching"
     url: /teaching/
-
-    - title: "Papers"
+  - title: "Papers"
     url: /writings/
