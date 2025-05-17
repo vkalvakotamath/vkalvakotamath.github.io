@@ -1,0 +1,70 @@
+name: Update arXiv3r Status
+
+on:
+  schedule:
+    # Run every hour
+    - cron: '0 * * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-status:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Check service status
+        id: check-status
+        run: |
+          response_code=$(curl -s -o /dev/null -w "%{http_code}" https://huggingface.co/api/spaces/vkalvakotamath/arXiv3r)
+          echo "HTTP Status: $response_code"
+          
+          if [ "$response_code" == "200" ]; then
+            echo "status=operational" >> $GITHUB_ENV
+            echo "message=All systems operational" >> $GITHUB_ENV
+          else
+            echo "status=down" >> $GITHUB_ENV
+            echo "message=Service appears to be down" >> $GITHUB_ENV
+          fi
+          
+          echo "timestamp=$(date -u '+%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_ENV
+      
+      - name: Update status.json
+        run: |
+          if [ ! -f "arXiv3r/status.json" ]; then
+            mkdir -p arXiv3r
+            echo '{"current":{},"history":[]}' > arXiv3r/status.json
+          fi
+          
+          # Add new status entry and check for status change
+          current_status=$(jq -r '.current.status // "unknown"' arXiv3r/status.json)
+          
+          # Update status.json with the new information
+          jq --arg status "${{ env.status }}" \
+             --arg message "${{ env.message }}" \
+             --arg timestamp "${{ env.timestamp }}" \
+             --arg current_status "$current_status" \
+             '.current = {"status": $status, "message": $message, "timestamp": $timestamp} | 
+              .history = (.history + [{"status": $status, "timestamp": $timestamp}] | if length > 720 then .[1:] else . end) |
+              if $current_status != $status and $status == "down" then
+                .incidents = (if .incidents then .incidents else [] end) + [{
+                  "date": $timestamp[0:10],
+                  "title": "Downtime Per-1hr",
+                  "description": "Current downtime: True. Check HF Spaces for a more precise update.",
+                  "resolved": false
+                }]
+              elif $current_status == "down" and $status == "operational" then
+                .incidents = .incidents | map(
+                  if .resolved == false then 
+                    . + {"resolved": true, "description": .description + " The service has been restored."}
+                  else . 
+                  end
+                )
+              else . end' \
+             arXiv3r/status.json > temp.json && mv temp.json arXiv3r/status.json
+      
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add arXiv3r/status.json
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update arXiv3r status: ${{ env.status }} at ${{ env.timestamp }}" && git push)
