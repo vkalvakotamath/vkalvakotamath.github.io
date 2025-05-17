@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arXiv3r Status</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .status-container {
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            background-color: #f5f5f5;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .status-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+        .status-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        .operational {
+            background-color: #2ecc71;
+        }
+        .degraded {
+            background-color: #f39c12;
+        }
+        .down {
+            background-color: #e74c3c;
+        }
+        .unknown {
+            background-color: #95a5a6;
+        }
+        .status-message {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        .last-updated {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+        .uptime-section {
+            margin-top: 40px;
+        }
+        .uptime-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        .uptime-day {
+            width: 12px;
+            height: 24px;
+            margin-right: 3px;
+            border-radius: 2px;
+        }
+        .incident-history {
+            margin-top: 40px;
+        }
+        .incident {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            background-color: #f8f9fa;
+            border-left: 4px solid #e74c3c;
+        }
+        .incident-date {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        .status-loading {
+            text-align: center;
+            padding: 20px;
+        }
+        .links {
+            margin-top: 20px;
+        }
+        .links a {
+            margin: 0 10px;
+            color: #3498db;
+            text-decoration: none;
+        }
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Current Status</h1>
+        <div class="links">
+            <a href="https://discord.com/oauth2/authorize?client_id=1373294136920113183" target="_blank">Add to Discord</a>
+            <a href="https://github.com/vkalvakotamath/arxiv3r" target="_blank">GitHub</a>
+          <a href="https://huggingface.co/spaces/vkalvakotamath/arXiv3r" target="_blank">Huggingface Spaces (live)</a>
+        </div>
+    </header>
+
+    <div class="status-container">
+        <h2>Current Status</h2>
+        <div class="status-indicator">
+            <div id="status-dot" class="status-dot unknown"></div>
+            <div id="status-text" class="status-text">Checking status...</div>
+        </div>
+        <div id="status-message" class="status-message">Fetching status info</div>
+        <div id="last-updated" class="last-updated">Last checked: --</div>
+    </div>
+
+    <div class="uptime-section">
+        <h2>30-Day Uptime</h2>
+        <div id="uptime-container" class="uptime-container">
+            <div class="status-loading">Loading uptime data...</div>
+        </div>
+    </div>
+
+    <div class="incident-history">
+        <h2>Recent Incidents</h2>
+        <div id="incidents-container">
+            <div class="status-loading">Loading incident history...</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>DUNE IS AWESOME &copy; 2025</p>
+    </footer>
+
+    <script>
+        // Status check constants
+        const STATUS_DATA_URL = './status.json';
+        const CHECK_INTERVAL = 300000; // Check every 5 minutes
+
+        // In-memory storage for status history and incidents
+        let statusData = {
+            current: { status: 'unknown', message: 'Status unknown', timestamp: '' },
+            history: [],
+            incidents: []
+        };
+
+        // Initialize uptime display
+        function updateUptimeDisplay() {
+            const uptimeContainer = document.getElementById('uptime-container');
+            uptimeContainer.innerHTML = '';
+            
+            // Use actual data if available, otherwise show placeholders
+            const historyData = statusData.history.slice(-30).reverse();
+            
+            if (historyData.length === 0) {
+                // Generate placeholders if no data
+                for (let i = 0; i < 30; i++) {
+                    const day = document.createElement('div');
+                    day.className = 'uptime-day unknown';
+                    day.title = `No data available`;
+                    uptimeContainer.appendChild(day);
+                }
+                return;
+            }
+            
+            // Fill with actual data
+            historyData.forEach((entry, index) => {
+                const day = document.createElement('div');
+                day.className = `uptime-day ${entry.status}`;
+                
+                // Format date for the tooltip
+                const date = new Date(entry.timestamp);
+                const formattedDate = date.toLocaleDateString();
+                
+                day.title = `${formattedDate}: ${entry.status}`;
+                uptimeContainer.appendChild(day);
+            });
+            
+            // Add placeholders if less than 30 days of data
+            const placeholdersNeeded = 30 - historyData.length;
+            for (let i = 0; i < placeholdersNeeded; i++) {
+                const day = document.createElement('div');
+                day.className = 'uptime-day unknown';
+                day.title = `No data available`;
+                uptimeContainer.appendChild(day);
+            }
+        }
+
+        // Update the incidents display
+        function updateIncidentDisplay() {
+            const incidentsContainer = document.getElementById('incidents-container');
+            
+            if (!statusData.incidents || statusData.incidents.length === 0) {
+                incidentsContainer.innerHTML = '<p>No incidents reported in the last 30 days.</p>';
+                return;
+            }
+            
+            incidentsContainer.innerHTML = '';
+            statusData.incidents.forEach(incident => {
+                const incidentEl = document.createElement('div');
+                incidentEl.className = 'incident';
+                incidentEl.innerHTML = `
+                    <h3>${incident.title}</h3>
+                    <div class="incident-date">${incident.date}${incident.resolved ? ' - Resolved' : ''}</div>
+                    <p>${incident.description}</p>
+                `;
+                incidentsContainer.appendChild(incidentEl);
+            });
+        }
+
+        // Update the status display based on current data
+        function updateStatusDisplay() {
+            const statusDot = document.getElementById('status-dot');
+            const statusText = document.getElementById('status-text');
+            const statusMessage = document.getElementById('status-message');
+            const lastUpdated = document.getElementById('last-updated');
+            
+            const current = statusData.current;
+            
+            // Remove all status classes and add the current one
+            statusDot.classList.remove('operational', 'degraded', 'down', 'unknown');
+            statusDot.classList.add(current.status || 'unknown');
+            
+            // Update text content
+            switch (current.status) {
+                case 'operational':
+                    statusText.textContent = 'Operational';
+                    break;
+                case 'degraded':
+                    statusText.textContent = 'Degraded Performance';
+                    break;
+                case 'down':
+                    statusText.textContent = 'Service Disruption';
+                    break;
+                default:
+                    statusText.textContent = 'Unknown';
+            }
+            
+            statusMessage.textContent = current.message || 'Status information unavailable';
+            
+            if (current.timestamp) {
+                const date = new Date(current.timestamp);
+                lastUpdated.textContent = `Last checked: ${date.toLocaleString()}`;
+            } else {
+                lastUpdated.textContent = 'Last checked: Unknown';
+            }
+        }
+
+        // Fetch status data from JSON file
+        async function fetchStatusData() {
+            try {
+                const response = await fetch(STATUS_DATA_URL);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch status data: ${response.status}`);
+                }
+                
+                statusData = await response.json();
+                
+                // Update displays with the new data
+                updateStatusDisplay();
+                updateUptimeDisplay();
+                updateIncidentDisplay();
+            } catch (error) {
+                console.error('Error fetching status data:', error);
+                // If we can't get the status file, show unknown status
+                document.getElementById('status-text').textContent = 'Status Unknown';
+                document.getElementById('status-message').textContent = 'Could not retrieve status information';
+            }
+        }
+
+        // Performs a manual check of the Hugging Face Space
+        async function checkLiveStatus() {
+            try {
+                // Make a request to check if the service is up
+                // Note: This may be blocked by CORS if making direct requests from browser
+                await fetch('https://huggingface.co/spaces/vkalvakotamath/arXiv3r', { 
+                    method: 'HEAD',
+                    mode: 'no-cors' // This is necessary for cross-origin requests
+                });
+                
+                // If we reach here without error, we'll assume it's operational
+                // (though due to CORS, we can't actually check the response status)
+                document.getElementById('status-dot').classList.remove('operational', 'degraded', 'down', 'unknown');
+                document.getElementById('status-dot').classList.add('operational');
+                document.getElementById('status-text').textContent = 'Likely Operational';
+                document.getElementById('status-message').textContent = 'Service appears to be responding (based on browser check)';
+            } catch (error) {
+                // If there's an error, the service might be down, but it could also be CORS
+                console.error('Error checking service status:', error);
+            }
+        }
+
+        // Initialize everything
+        function initialize() {
+            // Initial fetch of status data
+            fetchStatusData();
+            
+            // Also try a live check (though this may be limited by CORS)
+            checkLiveStatus();
+            
+            // Set up periodic checks
+            setInterval(fetchStatusData, CHECK_INTERVAL);
+        }
+
+        // Start when the page loads
+        window.addEventListener('load', initialize);
+    </script>
+</body>
+</html>
