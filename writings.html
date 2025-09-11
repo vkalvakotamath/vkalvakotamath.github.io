@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Writings — Vaibhav Kalvakota</title>
+  <link rel="icon" href="favicon.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><a href="index.html">Vaibhav Kalvakota</a></h1>
+      <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="papers.html">Papers</a>
+        <a href="writings.html">Writings</a>
+        <a href="links.html">Links</a>
+        <a href="stuffs.html">Stuffs</a>
+      </div>
+    </div>
+
+    <h1>Writings</h1>
+    <p class="meta">Notes, expositions, and miscellaneous pieces.</p>
+
+    <h2>Notes</h2>
+    <ul>
+      <li><a href="https://aayushayh.github.io/stringnote.pdf" target="_blank" rel="noopener">REVERING MUSINGS ON STRING COMPACTIFICATION (BUT MOSTLY DE SITTER)</a>, with Aayush Verma [hep-th]</li>
+      <li><a href="https://vkalvakotamath.github.io/files/ML_SM.pdf" target="_blank" rel="noopener">Machine Learning is just Statistical Mechanics with better Marketing</a> My article contribution to Anveshana.&nbsp;</li>
+      <li><a href="https://vkalvakotamath.github.io/files/Nobel.pdf" target="_blank" rel="noopener">Statement on the 2024 Nobel Prize in Physics</a> My impartial statement on the Nobel Prize in Physics awarded to Hopfield and Hinton in 2024.&nbsp;</li>
+      <li><a href="https://vkalvakotamath.github.io/files/Talk_slides_Definition_of_Holography.pdf" target="_blank" rel="noopener">The Definition of Holography</a> Talk at Theoretical Nexus based on arXiv:2404.00070 [hep-th].&nbsp;</li>
+      <li><a href="https://vkalvakotamath.github.io/files/Bulk_Physics__Algebras_and_All_That_Part_Three.pdf" target="_blank" rel="noopener">Bulk Physics, Algebras and All That -- Part Three: Strings Edition -I</a> [hep-th]</li>
+      <li><a href="https://arxiv.org/abs/2404.00070" target="_blank" rel="noopener">Canvas of Holography in (A)dS/CFT</a> arXiv:2404.00070, with Aayush Verma [hep-th]</li>
+      <li><a href="https://vkalvakotamath.github.io/files/Bulk_Physics__Algebras_and_All_That_Part_Two.pdf" target="_blank" rel="noopener">Bulk Physics, Algebras and All That -- Part Two: Black Hole Information Problem [hep-th]</a></li>
+      <li><a href="https://aayushayh.github.io/dSnote.pdf" target="_blank" rel="noopener">Revering Musings on de Sitter and Holography</a>, with Aayush Verma [hep-th]</li>
+      <li><a href="https://vkalvakotamath.github.io/files/Bulk_Physics__Algebras_and_All_That_Part_One.pdf" target="_blank" rel="noopener">Bulk Physics, Algebras and All That -- Part One: Bulk Reconstruction and Subregions</a>&nbsp;[hep-th]</li>
+      <li><a href="https://vkalvakotamath.github.io/files/Poincare-lect-1.pdf" target="_blank" rel="noopener">Introduction to Poincare and Ricci flow</a>&nbsp;[math.DG]</li>
+      <li><a href="https://vkalvakotamath.github.io/files/Poincare-lect-2.pdf" target="_blank" rel="noopener">Notes on Poincare conjecture and the h-cobordism theorem</a>&nbsp;[math.DG]</li>
+      <li><a href="https://vkalvakotamath.github.io/files/Penrose%20Diagrams.pdf" target="_blank" rel="noopener">Introduction to Penrose Diagrams</a> [gr-qc]</li>
+      <li><a href="https://web.ma.utexas.edu/mp_arc/c/22/22-35.pdf" target="_blank" rel="noopener">Does the Weyl Invariant Proposal provide an Accurate Description of Gravitational Entropy?</a> [gr-qc] (unrevised)</li>
+      <li>Notes on von Neumann Algebras [math.OA]</li>
+    </ul>
+
+  </div>
+
+  <div class="footer">
+    <p>&copy; <span id="year"></span> Vaibhav Kalvakota</p>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Render math after page load
+    document.addEventListener('DOMContentLoaded', function() {
+        renderMath();
+    });
+    
+    function renderMath() {
+        const content = document.querySelector('.container');
+        let html = content.innerHTML;
+        
+        // Render display math environments
+        html = html.replace(/\\begin\{equation\}([\s\S]*?)\\end\{equation\}/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: true });
+            } catch (e) {
+                console.error('KaTeX equation error:', e);
+                return match;
+            }
+        });
+        
+        html = html.replace(/\\\[([\s\S]*?)\\\]/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: true });
+            } catch (e) {
+                console.error('KaTeX display math error:', e);
+                return match;
+            }
+        });
+        
+        html = html.replace(/\$\$([\s\S]*?)\$\$/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: true });
+            } catch (e) {
+                console.error('KaTeX display math error:', e);
+                return match;
+            }
+        });
+        
+        // Render inline math
+        html = html.replace(/\\\((.*?)\\\)/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: false });
+            } catch (e) {
+                console.error('KaTeX inline math error:', e);
+                return match;
+            }
+        });
+        
+        html = html.replace(/\$([^$\n]+)\$/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: false });
+            } catch (e) {
+                console.error('KaTeX inline math error:', e);
+                return match;
+            }
+        });
+        
+        content.innerHTML = html;
+    }
+  </script>
+</body>
+</html>

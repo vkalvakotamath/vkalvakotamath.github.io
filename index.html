@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vaibhav Kalvakota — Notes</title>
+  <link rel="icon" href="favicon.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><a href="index.html">Vaibhav Kalvakota</a></h1>
+      <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="papers.html">Papers</a>
+        <a href="writings.html">Writings</a>
+        <a href="links.html">Links</a>
+        <a href="stuffs.html">Stuffs</a>
+      </div>
+    </div>
+
+    <div class="figure">
+      <img src="favicon.jpg" alt="Portrait of Vaibhav Kalvakota">
+      <div>
+        <p>
+          Hi! This is Vai, I am a researcher in theoretical high energy physics. I mostly work on string theory, with some concerning levels of obsession with de Sitter quantum gravity. 
+
+          I like Cats and Dune, mostly. I also compose music, and aspire to be something of a filmmaker myself. I did machine learning as well, and I am the founder of a startup called Orientifold AI.
+        </p>
+        <p>
+          arXiv categories: hep-th, math-ph and math-QA.
+        </p>
+        <p class="meta">Email: [my_first_name](number of r's in raspberry minus the number of b's in bluebubble)[only if 0 ignore that part else add number][last_name]@gmail.com</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <h2>Projects:</h2>
+    <ul>
+      <li><b>de Sitter string compactifications: </b> Primarily EFT constraints on such vacua beyond KKLT -- referred to as racetrack vacua.</li>
+      <li><b>Topological field theories: </b> Particularly at the level of quantum topology and rational CFTs.</li>
+      <li><b>Functorial QFTs in general: </b>Not much to say here.</li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p>&copy; <span id="year"></span> Vaibhav Kalvakota</p>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Render math after page load
+    document.addEventListener('DOMContentLoaded', function() {
+        renderMath();
+    });
+    
+    function renderMath() {
+        const content = document.querySelector('.container');
+        let html = content.innerHTML;
+        
+        // Render display math environments
+        html = html.replace(/\\begin\{equation\}([\s\S]*?)\\end\{equation\}/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: true });
+            } catch (e) {
+                console.error('KaTeX equation error:', e);
+                return match;
+            }
+        });
+        
+        html = html.replace(/\\\[([\s\S]*?)\\\]/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: true });
+            } catch (e) {
+                console.error('KaTeX display math error:', e);
+                return match;
+            }
+        });
+        
+        html = html.replace(/\$\$([\s\S]*?)\$\$/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: true });
+            } catch (e) {
+                console.error('KaTeX display math error:', e);
+                return match;
+            }
+        });
+        
+        // Render inline math
+        html = html.replace(/\\\((.*?)\\\)/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: false });
+            } catch (e) {
+                console.error('KaTeX inline math error:', e);
+                return match;
+            }
+        });
+        
+        html = html.replace(/\$([^$\n]+)\$/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: false });
+            } catch (e) {
+                console.error('KaTeX inline math error:', e);
+                return match;
+            }
+        });
+        
+        content.innerHTML = html;
+    }
+  </script>
+</body>
+</html>

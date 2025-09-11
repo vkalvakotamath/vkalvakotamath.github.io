@@ -1,0 +1,216 @@
+/* Exact nLab styling from strings project */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Times New Roman", Times, serif;
+    line-height: 1.6;
+    font-size: 1.1em;
+    margin: 0;
+    padding: 0;
+    background: white;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    flex: 1;
+    width: 100%;
+}
+
+.header {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 0;
+}
+
+/* Ensure consistent spacing after header regardless of first element */
+.header + * {
+    margin-top: 0 !important;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #000;
+    font-weight: normal;
+}
+
+.header h1 a {
+    color: #000;
+    text-decoration: none;
+}
+
+.header h1 a:hover {
+    color: #0066cc;
+    text-decoration: underline;
+}
+
+.nav {
+    margin-top: 10px;
+}
+
+.nav a {
+    color: #0066cc;
+    text-decoration: underline;
+    margin-right: 15px;
+    font-size: 0.9em;
+}
+
+.nav a:hover {
+    color: #f00;
+}
+
+.nav a:visited {
+    color: #551a8b;
+}
+
+.breadcrumb {
+    font-size: 0.85em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.breadcrumb a {
+    color: #0066cc;
+    text-decoration: underline;
+}
+
+.breadcrumb a:hover {
+    color: #f00;
+}
+
+.breadcrumb a:visited {
+    color: #551a8b;
+}
+
+h1 { 
+    font-size: 1.8em; 
+    margin-top: 0;
+    margin-bottom: 0.5em; 
+    color: #000; 
+    font-weight: bold;
+}
+
+h2 { 
+    font-size: 1.4em; 
+    margin-top: 1.5em; 
+    margin-bottom: 0.5em; 
+    color: #000; 
+    font-weight: bold;
+}
+
+h3 { 
+    font-size: 1.2em; 
+    margin-top: 1.2em; 
+    margin-bottom: 0.4em; 
+    color: #000;
+    font-weight: bold;
+}
+
+h4 { 
+    font-size: 1.1em; 
+    margin-top: 1em; 
+    margin-bottom: 0.4em; 
+    color: #000;
+    font-weight: bold;
+}
+
+p { 
+    margin-bottom: 1em; 
+    text-align: left; 
+}
+
+a { 
+    color: #0066cc; 
+    text-decoration: underline; 
+}
+
+a:hover { 
+    color: #f00; 
+}
+
+a:visited { 
+    color: #551a8b; 
+}
+
+ul, ol { 
+    margin-bottom: 1em; 
+    padding-left: 2em; 
+}
+
+li { 
+    margin-bottom: 0.3em; 
+}
+
+.footer {
+    background: #f0f0f0;
+    border-top: 1px solid #ccc;
+    text-align: center;
+    padding: 15px;
+    margin-top: 0;
+    font-size: 0.85em;
+    color: #666;
+    flex-shrink: 0;
+}
+
+.katex { 
+    font-size: 1em; 
+}
+
+.katex-display { 
+    margin: 1em 0; 
+    text-align: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.figure {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin: 1rem 0;
+}
+
+.figure img {
+    max-width: 180px;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+.figure .caption { 
+    color: #666; 
+    font-size: 0.9rem; 
+}
+
+.meta {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+hr { 
+    border: none; 
+    border-top: 1px solid #ccc; 
+    margin: 1.5rem 0; 
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+}

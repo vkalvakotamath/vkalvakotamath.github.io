@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Links — Vaibhav Kalvakota</title>
+  <link rel="icon" href="favicon.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><a href="index.html">Vaibhav Kalvakota</a></h1>
+      <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="papers.html">Papers</a>
+        <a href="writings.html">Writings</a>
+        <a href="links.html">Links</a>
+        <a href="stuffs.html">Stuffs</a>
+      </div>
+    </div>
+
+    <h1>Links</h1>
+    <p class="meta">Resources, references, and sites I find useful.</p>
+
+    <ul>
+      <li><a href="https://vkalvakotamath.github.io/" target="_blank" rel="noopener">Vaibhav Kalvakota (Personal Website)</a></li>
+      <li><a href="https://vkalvakotamath.blogspot.com/" target="_blank" rel="noopener">Blog</a></li>
+      <li><a href="https://arxiv.org/a/kalvakota_v_1.html" target="_blank" rel="noopener">arXiv (Author Page)</a></li>
+      <li><a href="https://youtube.com/@dahighenergyphysicist/" target="_blank" rel="noopener">YouTube Channel</a></li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p>&copy; <span id="year"></span> Vaibhav Kalvakota</p>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Render math after page load
+    document.addEventListener('DOMContentLoaded', function() {
+        renderMath();
+    });
+    
+    function renderMath() {
+        const content = document.querySelector('.container');
+        let html = content.innerHTML;
+        
+        // Render display math environments
+        html = html.replace(/\\begin\{equation\}([\s\S]*?)\\end\{equation\}/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: true });
+            } catch (e) {
+                console.error('KaTeX equation error:', e);
+                return match;
+            }
+        });
+        
+        html = html.replace(/\\\[([\s\S]*?)\\\]/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: true });
+            } catch (e) {
+                console.error('KaTeX display math error:', e);
+                return match;
+            }
+        });
+        
+        html = html.replace(/\$\$([\s\S]*?)\$\$/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: true });
+            } catch (e) {
+                console.error('KaTeX display math error:', e);
+                return match;
+            }
+        });
+        
+        // Render inline math
+        html = html.replace(/\\\((.*?)\\\)/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: false });
+            } catch (e) {
+                console.error('KaTeX inline math error:', e);
+                return match;
+            }
+        });
+        
+        html = html.replace(/\$([^$\n]+)\$/g, function(match, math) {
+            try {
+                return katex.renderToString(math.trim(), { displayMode: false });
+            } catch (e) {
+                console.error('KaTeX inline math error:', e);
+                return match;
+            }
+        });
+        
+        content.innerHTML = html;
+    }
+  </script>
+</body>
+</html>

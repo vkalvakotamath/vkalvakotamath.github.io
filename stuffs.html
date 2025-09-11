@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stuffs — Vaibhav Kalvakota</title>
+  <link rel="icon" href="favicon.jpg" type="image/jpeg">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><a href="index.html">Vaibhav Kalvakota</a></h1>
+      <div class="nav">
+        <a href="index.html">Home</a>
+        <a href="papers.html">Papers</a>
+        <a href="writings.html">Writings</a>
+        <a href="links.html">Links</a>
+        <a href="stuffs.html">Stuffs</a>
+      </div>
+    </div>
+
+    <h1>Stuffs</h1>
+    <p class="meta">Some stuffs.</p>
+    <h2>Updates</h2>
+    <ul class="updates-list" id="updates">
+      <li>
+        <div class="meta">2025-09-10</div>
+        <div class="entry">
+          I started working on topological field theories. And this website has been updated for the first time. Hopefully I will update this more often than not.
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    <p>&copy; <span id="year"></span> Vaibhav Kalvakota</p>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    document.addEventListener('DOMContentLoaded', function() {
+      renderMath();
+    });
+
+    function renderMath() {
+      const content = document.querySelector('.container');
+      let html = content.innerHTML;
+
+      html = html.replace(/\\begin\{equation\}([\s\S]*?)\\end\{equation\}/g, function(match, math) {
+        try { return katex.renderToString(math.trim(), { displayMode: true }); } catch (e) { return match; }
+      });
+
+      html = html.replace(/\\\[([\s\S]*?)\\\]/g, function(match, math) {
+        try { return katex.renderToString(math.trim(), { displayMode: true }); } catch (e) { return match; }
+      });
+
+      html = html.replace(/\$\$([\s\S]*?)\$\$/g, function(match, math) {
+        try { return katex.renderToString(math.trim(), { displayMode: true }); } catch (e) { return match; }
+      });
+
+      html = html.replace(/\\\((.*?)\\\)/g, function(match, math) {
+        try { return katex.renderToString(math.trim(), { displayMode: false }); } catch (e) { return match; }
+      });
+
+      html = html.replace(/\$([^$\n]+)\$/g, function(match, math) {
+        try { return katex.renderToString(math.trim(), { displayMode: false }); } catch (e) { return match; }
+      });
+
+      content.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
+
